@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 21 nov. 2025 à 08:32
+-- Généré le : ven. 21 nov. 2025 à 10:10
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -48,7 +48,7 @@ CREATE TABLE `joueur` (
   `date_naissance` date NOT NULL,
   `taille` decimal(4,1) NOT NULL,
   `poids` decimal(5,2) NOT NULL,
-  `statut` enum('Actif','Blessé','Suspendu','Absent') NOT NULL,
+  `statut` enum('Actif','Blessé','Suspendu','Absent') NOT NULL DEFAULT 'Actif',
   `commentaires` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -74,7 +74,8 @@ CREATE TABLE `match` (
 -- Index pour la table `feuille_match`
 --
 ALTER TABLE `feuille_match`
-  ADD PRIMARY KEY (`id_match`,`num_licence`);
+  ADD PRIMARY KEY (`id_match`,`num_licence`),
+  ADD KEY `FK_numLicence` (`num_licence`);
 
 --
 -- Index pour la table `joueur`
