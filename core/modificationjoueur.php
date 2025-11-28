@@ -2,14 +2,14 @@
 <head>
     <?php
     try {
-        $linkpdo = new PDO('mysql:host=localhost;dbname=basketball;charset=utf8mb4', 'root', '');
+        $linkpdo = new PDO('mysql:host=localhost;dbname=basketball', 'root', '');
         $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (Exception $e) {
         die('Erreur BDD');
     }
 
     if (!isset($_GET['var1'])) {
-        header('Location: equipe.php');
+        header('Location: ../pages/equipe.php');
         exit;
     }
 
@@ -20,14 +20,14 @@ $num = $_GET['var1'];
     $data = $req->fetch();
 
 if (!$data) {
-    header('Location: equipe.php');
+    header('Location: ../pages/equipe.php');
     exit;
 }
 ?>
 <!doctype html>
 <html>
 <head><meta charset="utf-8"><title>Modifier joueur</title>
-<link rel="stylesheet" href="/assets/style.css"></head>
+<link rel="stylesheet" href="../css/style.css"></head>
 <body>
     <form action="ajoutjoueur.php" method="post">
 
@@ -65,6 +65,6 @@ if (!$data) {
     <input type="submit" value="Valider">
 </form>
 
-<form action="equipe.php" method="get"><button type="submit">Retour équipe</button></form>
+<form action="../pages/equipe.php" method="get"><button type="submit">Retour équipe</button></form>
 </body>
 </html>

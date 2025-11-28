@@ -12,13 +12,13 @@ if (empty($_SESSION['login'])) {
 <head>
     <meta charset="utf-8">
     <title>Accueil</title>
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<header class="container" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+<header class="container">
     <div>
-        <h1 style="margin:0;font-size:20px;">Gestion équipe</h1>
-        <div style="color:#555;font-size:13px;">Connecté : <?php echo htmlspecialchars($_SESSION['login']); ?></div>
+        <h1>Gestion équipe</h1>
+        <div>Connecté : <?php echo htmlspecialchars($_SESSION['login']); ?></div>
     </div>
     <nav>
         <a href="accueil.php" class="btn">Accueil</a>
@@ -42,8 +42,8 @@ if (empty($_SESSION['login'])) {
     </div>
 </main>
 
-<footer class="container" style="margin-top:14px;text-align:center;color:#666;font-size:13px;">
-    &copy; <?php echo date('Y'); ?> - Application Entraîneur
+<footer class="container">
+    <?php echo date('Y'); ?> - Application Entraîneur
 </footer>
 </body>
 </html>

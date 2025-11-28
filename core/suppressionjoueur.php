@@ -1,13 +1,13 @@
 <?php
 try {
-    $linkpdo = new PDO('mysql:host=localhost;dbname=basketball;charset=utf8mb4', 'root', '');
+    $linkpdo = new PDO('mysql:host=localhost;dbname=basketball', 'root', '');
     $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     die('Erreur BDD');
 }
 
 if (!isset($_GET['var1'])) {
-    header('Location: equipe.php'); exit;
+    header('Location: ../pages/equipe.php'); exit;
 }
 $num = $_GET['var1'];
 
@@ -16,12 +16,12 @@ if (!empty($_POST)) {
         $sup = $linkpdo->prepare('DELETE FROM joueur WHERE num_licence = ?');
         $sup->execute([$num]);
     }
-    header('Location: equipe.php'); exit;
+    header('Location: ../pages/equipe.php'); exit;
 }
 ?>
 <!doctype html>
 <html>
-<head><meta charset="utf-8"><title>Supprimer joueur</title><link rel="stylesheet" href="/assets/style.css"></head>
+<head><meta charset="utf-8"><title>Supprimer joueur</title><link rel="stylesheet" href="../css/style.css"></head>
 <body>
 <form method="post">
     <p>Confirmer suppression du joueur <?php echo htmlspecialchars($num); ?> ?</p>

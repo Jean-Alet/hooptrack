@@ -1,6 +1,6 @@
 <?php
 try {
-    $linkpdo = new PDO('mysql:host=localhost;dbname=basketball;charset=utf8mb4', 'root', '');
+    $linkpdo = new PDO('mysql:host=localhost;dbname=basketball', 'root', '');
     $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     die('Erreur BDD');
@@ -15,7 +15,7 @@ if (!empty($_POST)) {
     $ins = $linkpdo->prepare('INSERT INTO `match` (date_match, equipe_adverse, lieu, resultat) VALUES (?, ?, ?, ?)');
     $ins->execute([$date_match, $equipe, $lieu, $resultat === '' ? null : $resultat]);
 
-    header('Location: match.php'); exit;
+    header('Location: ../pages/match.php'); exit;
 }
 ?>
 <!doctype html>
@@ -28,5 +28,5 @@ if (!empty($_POST)) {
     Résultat: <select name="resultat"><option value="">--</option><option>Victoire</option><option>Défaite</option></select><br>
     <input type="submit" value="Ajouter">
 </form>
-<form action="match.php" method="get"><button type="submit">Retour</button></form>
+<form action="../pages/match.php" method="get"><button type="submit">Retour</button></form>
 </body></html>

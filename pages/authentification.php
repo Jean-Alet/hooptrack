@@ -9,13 +9,13 @@ if (!empty($_POST)) {
         $error = 'Remplissez tous les champs.';
     } else {
         try {
-            $linkpdo = new PDO('mysql:host=localhost;dbname=basketball;charset=utf8mb4', 'root', '');
+            $linkpdo = new PDO('mysql:host=localhost;dbname=basketball', 'root', '');
             $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // pour gerer les exceptions (plus propre)
         } catch (Exception $e) {
             die('Erreur BDD');
         }
 
-        $requete = $linkpdo->prepare('SELECT mdp_hash FROM utilisateur WHERE login_utilisateur = ? LIMIT 1');
+        $requete = $linkpdo->prepare('SELECT mdp_hash FROM utilisateur WHERE login_utilisateur = ?');
         $requete->execute([$login]);
         $mdphash = $requete->fetchColumn(); // pour recuperer le hash ou false (fetch de base ne fonctionne pas dans ce cas)
 

@@ -23,7 +23,7 @@ Modifications a faire:
 
 - CSS centralisé (deja fait le include, maintenant il faut faire le graphique dans chaque page) + changer le css car complètement généré
 - PDO centralisé
-- SQL centralisé
+- SQL centralisé (suçage max)
 - Changer ajoutmatch pour qu'il ait une page graphique et un script qui ajoute le match (il faudra mettre les differents fichiers donc les mettre dans core et dans page)
 - Créer une page graphique pour ajouter un joueur (en plus il faudra la lier au script php ajoutJoueur et la mettre dans pages)
 - Changer [modificationjoueur, modificationmatch, supressionjoueur, suppressionmatch] pour que la page graphique et le script soirt séparé
@@ -35,3 +35,8 @@ Choses à vérifier:
 - (int) à expliquer (jsp ce que ça fait j'imagine transtypage)
 - variable ?? ''    à expliquer (facile a faire mais j'ai la flemme)
 - ajout feuille bizarre : player_$i role_$i <---- c'est trop bizarre
+
+- autentification pas sensible à la casse
+
+il faut aussi faire une appli differente pour tel 
+enlever charset dans les co pdo

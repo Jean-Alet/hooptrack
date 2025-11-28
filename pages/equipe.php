@@ -1,6 +1,6 @@
 <?php
 try {
-    $linkpdo = new PDO('mysql:host=localhost;dbname=basketball;charset=utf8mb4', 'root', '');
+    $linkpdo = new PDO('mysql:host=localhost;dbname=basketball', 'root', '');
     $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
@@ -10,7 +10,7 @@ $req = $linkpdo->prepare('SELECT num_licence, nom, prenom, date_naissance, taill
 $req->execute();
 ?>
 <head>
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 <table>
@@ -36,7 +36,7 @@ while ($data = $req->fetch()) {
     echo '<td>' . htmlspecialchars($data['poids']) . '</td>';
     echo '<td>' . htmlspecialchars($data['statut']) . '</td>';
     echo '<td>' . htmlspecialchars($data['commentaires']) . '</td>';
-    echo '<td><a href="modificationjoueur.php?var1=' . urlencode($data['num_licence']) . '">Modifier</a> | <a href="suppressionjoueur.php?var1=' . urlencode($data['num_licence']) . '">Supprimer</a></td>';
+    echo '<td><a href="../core/modificationjoueur.php?var1=' . urlencode($data['num_licence']) . '">Modifier</a> | <a href="../core/suppressionjoueur.php?var1=' . urlencode($data['num_licence']) . '">Supprimer</a></td>';
     echo '</tr>';
 }
 
