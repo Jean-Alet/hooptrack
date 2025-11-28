@@ -105,7 +105,8 @@ INSERT INTO `match` (`id_match`, `date_match`, `equipe_adverse`, `lieu`, `result
 (1, '2025-11-01 20:00:00', 'Tigers', 'Domicile', 'Victoire'),
 (2, '2025-11-08 18:30:00', 'Eagles', 'Extérieur', 'Défaite'),
 (3, '2025-11-15 19:00:00', 'Sharks', 'Domicile', NULL),
-(4, '2025-11-21 16:16:00', 'caca', 'Extérieur', NULL);
+(4, '2025-11-21 16:00:00', 'Gorillas', 'Extérieur', NULL),
+(5, '2025-11-25 10:30:00', 'Lions', 'Domicile', NULL);
 
 -- --------------------------------------------------------
 

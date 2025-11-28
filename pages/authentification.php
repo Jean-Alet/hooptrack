@@ -15,7 +15,7 @@ if (!empty($_POST)) {
             die('Erreur BDD');
         }
 
-        $requete = $linkpdo->prepare('SELECT mdp_hash FROM utilisateur WHERE login_utilisateur = ? LIMIT 1');
+        $requete = $linkpdo->prepare('SELECT mdp_hash FROM utilisateur WHERE login_utilisateur = ?');
         $requete->execute([$login]);
         $mdphash = $requete->fetchColumn(); // pour recuperer le hash ou false (fetch de base ne fonctionne pas dans ce cas)
 
