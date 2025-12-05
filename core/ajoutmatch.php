@@ -19,7 +19,8 @@ if (!empty($_POST)) {
 }
 ?>
 <!doctype html>
-<html><head><meta charset="utf-8"><title>Ajouter match</title></head>
+<html><head><meta charset="utf-8"><title>Ajouter match</title>
+<link rel="stylesheet" href="../css/style.css"></head>
 <body>
 <form method="post">
     Date et heure: <input type="datetime-local" name="date_match" required><br>

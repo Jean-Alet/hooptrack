@@ -1,14 +1,9 @@
+<?php include '../includes/_linkpdo.php'; ?>
 <?php
-try {
-    $linkpdo = new PDO('mysql:host=localhost;dbname=basketball', 'root', '');
-    $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
-}
-
 $req = $linkpdo->prepare('SELECT num_licence, nom, prenom, date_naissance, taille, poids, statut, commentaires FROM joueur ORDER BY nom, prenom');
 $req->execute();
 ?>
+<html>
 <head>
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -47,4 +42,6 @@ $req->closeCursor();
 <form action="accueil.php" method="get">
     <button type="submit">Accueil</button>
 </form>
+<?php include '../includes/_footer.php'; ?>
 </body>
+</html>

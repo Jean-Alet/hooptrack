@@ -19,7 +19,6 @@ quand il y a erreur sql.
 
 Modifications a faire:
 
-- !!! IMPORTANT !!! j'ai changer l'organisation des fichiers plus rien n'est lié ---> il faut les remmettre bien (yen a c'est deja bon)
 
 - CSS centralisé (deja fait le include, maintenant il faut faire le graphique dans chaque page) + changer le css car complètement généré
 - PDO centralisé
@@ -28,6 +27,9 @@ Modifications a faire:
 - Créer une page graphique pour ajouter un joueur (en plus il faudra la lier au script php ajoutJoueur et la mettre dans pages)
 - Changer [modificationjoueur, modificationmatch, supressionjoueur, suppressionmatch] pour que la page graphique et le script soirt séparé
 - Changer modification ya une partie que j'ai générer qui est vraiment pas folle (je l'ai mis en commentaire)
+- changer les noms pour rendre plus explicite
+- Feuille de match - liste match fonctionne pas.
+- equipe.php,authetification.php séparer le php 
 
 Choses à vérifier: 
 - original_num bizarre
@@ -36,7 +38,4 @@ Choses à vérifier:
 - variable ?? ''    à expliquer (facile a faire mais j'ai la flemme)
 - ajout feuille bizarre : player_$i role_$i <---- c'est trop bizarre
 
-- autentification pas sensible à la casse
-
 il faut aussi faire une appli differente pour tel 
-enlever charset dans les co pdo
