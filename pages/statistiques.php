@@ -7,6 +7,8 @@ try {
     die('Erreur BDD');
 }
 
+include '../includes/_nav.php';
+
 // résumé victoires/défaites/nuls
 $stmt = $linkpdo->query("SELECT resultat, COUNT(*) as c FROM `match` GROUP BY resultat");
 $tot = [];
@@ -60,7 +62,7 @@ foreach ($liste as $p) {
 <!doctype html>
 <html><head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Statistiques</title>
 </head>
 <body>

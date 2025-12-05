@@ -1,4 +1,5 @@
-<?php include '../includes/_linkpdo.php'; ?>
+<?php include '../includes/_linkpdo.php'; 
+      include '../includes/_nav.php';?>
 <?php
 $req = $linkpdo->prepare('SELECT num_licence, nom, prenom, date_naissance, taille, poids, statut, commentaires FROM joueur ORDER BY nom, prenom');
 $req->execute();
@@ -38,6 +39,10 @@ while ($data = $req->fetch()) {
 $req->closeCursor();
 ?>
 </table>
+
+<form action="../pages/ajouterjoueur.php" method="get">
+    <button type="submit">Ajouter joueur</button>
+</form>
 
 <form action="accueil.php" method="get">
     <button type="submit">Accueil</button>
