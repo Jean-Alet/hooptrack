@@ -1,10 +1,4 @@
-<?php
-try {
-    $linkpdo = new PDO('mysql:host=localhost;dbname=basketball', 'root', '');
-    $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $e) {
-    die('Erreur BDD');
-}
+<?php include '../includes/_linkpdo.php';
 
 if (!isset($_GET['var1'])) {
     header('Location: ../pages/equipe.php'); exit;

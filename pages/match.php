@@ -1,14 +1,7 @@
-<?php
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=basketball', 'root', '');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
-}
+<?php include '../includes/_nav.php';
+        include '../includes/_linkpdo.php';
 
-include '../includes/_nav.php';
-
-$req = $pdo->prepare('SELECT id_match, date_match, equipe_adverse, lieu, resultat FROM `match` ORDER BY date_match DESC');
+$req = $linkpdo->prepare('SELECT id_match, date_match, equipe_adverse, lieu, resultat FROM `match` ORDER BY date_match DESC');
 $req->execute();
 ?>
 <head>

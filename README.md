@@ -21,15 +21,12 @@ Modifications a faire:
 
 
 - CSS centralisé (deja fait le include, maintenant il faut faire le graphique dans chaque page) + changer le css car complètement généré
-- PDO centralisé
 - SQL centralisé (suçage max)
-- Changer [modificationjoueur, modificationmatch, supressionjoueur, suppressionmatch] pour que la page graphique et le script soirt séparé
-- Changer modification ya une partie que j'ai générer qui est vraiment pas folle (je l'ai mis en commentaire)
+- Changer [modificationjoueur, modificationmatch, supressionjoueur, suppressionmatch] pour que la page graphique et le script soient séparés
+- Changer modification y a une partie que j'ai générée qui est vraiment pas folle (je l'ai mis en commentaire)
 - changer les noms pour rendre plus explicite
-- equipe.php, authentification.php séparer le php 
-- quand on met un joueur dans une feuille de match et qu'on l'enregistre, la feuille de match que l'on vient de modifier est vide en affichage alors que dans la base non
-- feuille de match pas mal de choses à faire
-- include linkpdo sur toutes les pages
+- equipe.php séparer le php
+- feuille de match : pouvoir ajouter une note après un match (cad pouvoir modifier une feuille de match après match)
 
 Choses à vérifier: 
 - original_num bizarre

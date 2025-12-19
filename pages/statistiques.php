@@ -1,13 +1,5 @@
-<?php
-// connexion DB
-try {
-    $linkpdo = new PDO('mysql:host=localhost;dbname=basketball', 'root', '');
-    $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $e) {
-    die('Erreur BDD');
-}
-
-include '../includes/_nav.php';
+<?php include '../includes/_nav.php';
+        include '../includes/_linkpdo.php';
 
 // résumé victoires/défaites/nuls
 $stmt = $linkpdo->query("SELECT resultat, COUNT(*) as c FROM `match` GROUP BY resultat");
@@ -60,7 +52,8 @@ foreach ($liste as $p) {
 }
 ?>
 <!doctype html>
-<html><head>
+<html>
+<head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/style.css">
     <title>Statistiques</title>

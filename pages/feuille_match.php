@@ -1,57 +1,144 @@
-<?php
-try {
-    $linkpdo = new PDO('mysql:host=localhost;dbname=basketball', 'root', '');
-    $linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $e) {
-    die('Erreur BDD');
+<?php include '../includes/_nav.php';
+        include '../includes/_linkpdo.php';
+
+$matchs = $linkpdo->query(
+    "SELECT id_match, date_match, equipe_adverse
+     FROM `match`
+     WHERE date_match >= NOW()
+     ORDER BY date_match ASC"
+)->fetchAll(PDO::FETCH_ASSOC);
+
+$joueurs = $linkpdo->query(
+    "SELECT num_licence, nom, prenom, taille, poids, commentaires
+     FROM joueur
+     WHERE statut='Actif'
+     ORDER BY nom, prenom"
+)->fetchAll(PDO::FETCH_ASSOC);
+
+$id_match = $_GET['id_match'] ?? $_POST['id_match'] ?? null;
+
+$feuille = [];
+if ($id_match && empty($_POST)) {
+    $stm = $linkpdo->prepare(
+        "SELECT num_licence, role, poste, note
+         FROM feuille_match
+         WHERE id_match = ?"
+    );
+    $stm->execute([$id_match]);
+    $feuille = $stm->fetchAll(PDO::FETCH_ASSOC);
 }
 
-include '../includes/_nav.php';
+$source = [];
+if (!empty($_POST)) {
+    for ($i = 0; $i < 12; $i++) {
+        if (!isset($_POST["player_$i"])) break;
+        if ($_POST["player_$i"] === '') continue;
+        $source[] = [
+            'num_licence' => $_POST["player_$i"],
+            'role'        => $_POST["role_$i"],
+            'poste'       => $_POST["poste_$i"]
+        ];
+    }
+} else {
+    $source = $feuille;
+}
 
-// matchs à venir 
-$stm = $linkpdo->prepare('SELECT id_match, date_match, equipe_adverse FROM `match` WHERE date_match >= NOW() ORDER BY date_match ASC');
-$stm->execute();
-$matchs = $stm->fetchAll(PDO::FETCH_ASSOC);
+$joueursIndex = [];
+foreach ($joueurs as $j) {
+    $joueursIndex[$j['num_licence']] = $j;
+}
 
-// joueurs actifs
-$stm2 = $linkpdo->prepare('SELECT num_licence, nom, prenom FROM joueur WHERE statut = "Actif" ORDER BY nom, prenom');
-$stm2->execute();
-$joueurs = $stm2->fetchAll(PDO::FETCH_ASSOC);
+$error = $error ?? null;
+$postes = ['Meneur', 'Arrière', 'Ailier', 'Ailier fort', 'Pivot'];
+$max = max(12, count($source));
 ?>
 <!doctype html>
-<html><head>
+<html>
+<head>
     <meta charset="utf-8">
-    <title>Préparer feuille de match</title>
     <link rel="stylesheet" href="../css/style.css">
+    <title>Feuille de match</title>
 </head>
 <body>
-<form method="post" action="../core/ajoutFeuille.php">
-    Match:
-    <select name="id_match" required>
+
+<h3>Feuille de match</h3>
+
+<?php if ($error): ?>
+    <p style="color:red"><?= $error ?></p>
+<?php endif; ?>
+
+<form method="get">
+    <select name="id_match" onchange="this.form.submit()">
+        <option value="">-- match --</option>
         <?php foreach ($matchs as $m): ?>
-            <option value="<?php echo $m['id_match']; ?>"><?php echo htmlspecialchars($m['date_match'].' - '.$m['equipe_adverse']); ?></option>
+            <option value="<?= $m['id_match'] ?>" <?= ($id_match == $m['id_match']) ? 'selected' : '' ?>>
+                <?= $m['date_match'] . ' ' . $m['equipe_adverse'] ?>
+            </option>
         <?php endforeach; ?>
-    </select><br>
-
-    <?php for ($i=0;$i<12;$i++): ?>
-        <div>
-            <select name="player_<?php echo $i; ?>">
-                <option value="">-- joueur --</option>
-                <?php foreach ($joueurs as $j): ?>
-                    <option value="<?php echo htmlspecialchars($j['num_licence']); ?>"><?php echo htmlspecialchars($j['nom'].' '.$j['prenom']); ?></option>
-                <?php endforeach; ?>
-            </select>
-            <select name="role_<?php echo $i; ?>">
-                <option value="Titulaire">Titulaire</option>
-                <option value="Remplaçant">Remplaçant</option>
-            </select>
-            <select name="poste_<?php echo $i; ?>">
-                <option>Meneur</option><option>Arrière</option><option>Ailier</option><option>Ailier fort</option><option>Pivot</option>
-            </select>
-        </div>
-    <?php endfor; ?>
-
-    <input type="submit" value="Enregistrer feuille">
+    </select>
 </form>
-<form action="accueil.php" method="get"><button type="submit">Accueil</button></form>
-</body></html>
+
+<?php if ($id_match): ?>
+<form method="post" action="../core/ajoutFeuille.php">
+    <input type="hidden" name="id_match" value="<?= $id_match ?>">
+
+    <table border="1">
+        <tr>
+            <th>Joueur</th>
+            <th>Rôle</th>
+            <th>Poste</th>
+            <th>Note</th>
+            <th>Commentaires</th>
+        </tr>
+        <?php for ($i = 0; $i < $max; $i++):
+            $f = $source[$i] ?? null;
+            $j = $f ? $joueursIndex[$f['num_licence']] ?? null : null;
+        ?>
+        <tr>
+            <td>
+                <select name="player_<?= $i ?>">
+                    <option value="">-- joueur --</option>
+                    <?php foreach ($joueurs as $joueur): ?>
+                        <option value="<?= $joueur['num_licence'] ?>" <?= ($f && $f['num_licence'] == $joueur['num_licence']) ? 'selected' : '' ?>>
+                            <?= $joueur['nom'] . ' ' . $joueur['prenom'] . ' - ' . $joueur['taille'] . 'cm/' . $joueur['poids'] . 'kg' ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+
+            <td>
+                <?php
+                $titulaire_deja = array_column(array_filter($source, fn($e) => $e['role'] == 'Titulaire'), 'poste');
+                ?>
+                <select name="role_<?= $i ?>">
+                    <option value="Titulaire" <?= ($f && $f['role'] == 'Titulaire') ? 'selected' : '' ?> <?= ($f && in_array($f['poste'], $titulaire_deja) && $f['role'] != 'Titulaire') ? 'disabled' : '' ?>>Titulaire</option>
+                    <option value="Remplaçant" <?= ($f && $f['role'] == 'Remplaçant') ? 'selected' : '' ?>>Remplaçant</option>
+                </select>
+            </td>
+
+            <td>
+                <select name="poste_<?= $i ?>">
+                    <?php foreach ($postes as $p): ?>
+                        <option value="<?= $p ?>" <?= ($f && $f['poste'] == $p) ? 'selected' : '' ?>><?= $p ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+
+            <td>
+                <?= $f['note'] ?? '' ?>
+            </td>
+
+            <td>
+                <?= $j['commentaires'] ?? '' ?>
+            </td>
+        </tr>
+        <?php endfor; ?>
+    </table>
+
+    <br>
+    <input type="submit" value="Enregistrer">
+</form>
+<?php endif; ?>
+
+</body>
+</html>

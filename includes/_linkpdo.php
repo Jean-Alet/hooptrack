@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (empty($_SESSION['login'])) {
-    header('Location: ../pages/authentification.php');
+    header('Location: ../pages/authentification_disp.php');
     exit;
 }
 try {
@@ -10,5 +10,4 @@ try {
 } catch (Exception $e) {
     die('Erreur BDD');
 }
-
 ?>

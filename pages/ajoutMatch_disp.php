@@ -1,4 +1,5 @@
-<?php include '../includes/_nav.php'; ?>
+<?php include '../includes/_session.php'; 
+        include '../includes/_nav.php'; ?>
 
 <!doctype html>
 <html>
