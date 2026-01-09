@@ -50,9 +50,6 @@
         <form action="../pages/ajouterJoueur_disp.php" method="get" class="inline">
             <button type="submit">Ajouter joueur</button>
         </form>
-        <form action="accueil_disp.php" method="get" class="inline">
-            <button type="submit">Accueil</button>
-        </form>
     </div>
 </div>
 <?php include '../includes/_footer.php'; ?>
