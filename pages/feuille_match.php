@@ -64,7 +64,7 @@ $max = max(12, count($source));
 <h3>Feuille de match</h3>
 
 <?php if ($error): ?>
-    <p style="color:red"><?= $error ?></p>
+    <p class="error"><?= $error ?></p>
 <?php endif; ?>
 
 <form method="get">

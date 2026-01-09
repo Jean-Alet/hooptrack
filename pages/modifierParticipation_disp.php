@@ -14,7 +14,7 @@ include '../includes/_modifierparticipation.php';
 <div class="container">
     <h2>Modifier participation</h2>
     <?php if (isset($_GET['error'])): ?>
-        <p style="color:red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+        <p class="error"><?php echo htmlspecialchars($_GET['error']); ?></p>
     <?php endif; ?>
     
     <div class="match-info">

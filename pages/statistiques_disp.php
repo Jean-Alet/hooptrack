@@ -12,7 +12,7 @@ include '../includes/_statistiques.php';
 <?php include '../includes/_nav.php'; ?>
 
 <div class="container">
-    <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Statistiques de l'Équipe</h2>
+    <h2 class="text-center" style="margin-bottom: 30px;">Statistiques de l'Équipe</h2>
 
     <div class="stats-summary">
         <div class="stat-item victory">

@@ -14,10 +14,10 @@ include '../includes/_evaluerjoueurs.php';
 <div class="container">
     <h2>Évaluer les joueurs</h2>
     <?php if (isset($_GET['error'])): ?>
-        <p style="color:red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+        <p class="error"><?php echo htmlspecialchars($_GET['error']); ?></p>
     <?php endif; ?>
     <?php if (isset($_GET['success'])): ?>
-        <p style="color:green;"><?php echo htmlspecialchars($_GET['success']); ?></p>
+        <p class="success"><?php echo htmlspecialchars($_GET['success']); ?></p>
     <?php endif; ?>
     
     <div class="match-info">

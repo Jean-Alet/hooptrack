@@ -13,7 +13,7 @@
 <div class="container">
     <h2>Modifier un match</h2>
     <?php if (isset($_GET['error'])): ?>
-        <p style="color:red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+        <p class="error"><?php echo htmlspecialchars($_GET['error']); ?></p>
     <?php endif; ?>
     <form method="post" action="../core/modifier_match.php">
         <input type="hidden" name="id_match" value="<?php echo htmlspecialchars($m['id_match']); ?>">

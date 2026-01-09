@@ -18,7 +18,7 @@ $matches = getMatch($linkpdo);
 <div class="container">
     <h2>Matchs</h2>
     <?php if (isset($_GET['error'])): ?>
-        <p style="color:red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+        <p class="error"><?php echo htmlspecialchars($_GET['error']); ?></p>
     <?php endif; ?>
     <table>
     <tr>
@@ -62,7 +62,7 @@ $matches = getMatch($linkpdo);
             if (empty($row['resultat']) || $row['score_equipe'] === null || $row['score_adverse'] === null) {
                 echo '<a href="../pages/saisirResultat_disp.php?match_id=' . urlencode($row['id_match']) . '">Saisir résultat</a>';
             } else {
-                echo '<span style="color: #999;">-</span>';
+                echo '<span class="text-muted">-</span>';
             }
         }
         echo '</td>';
@@ -72,10 +72,10 @@ $matches = getMatch($linkpdo);
     </table>
 
     <div class="actions">
-        <form action="../pages/ajouterMatch_disp.php" method="get" style="display:inline;">
+        <form action="../pages/ajouterMatch_disp.php" method="get" class="inline">
             <button type="submit">Ajouter match</button>
         </form>
-        <form action="accueil_disp.php" method="get" style="display:inline;">
+        <form action="accueil_disp.php" method="get" class="inline">
             <button type="submit">Accueil</button>
         </form>
     </div>

@@ -14,7 +14,7 @@ include '../includes/_feuilleliste.php';
 <div class="container">
     <h2>Feuilles de match</h2>
     <?php if (isset($_GET['error'])): ?>
-        <p style="color:red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+        <p class="error"><?php echo htmlspecialchars($_GET['error']); ?></p>
     <?php endif; ?>
     <div class="actions">
         <a href="preparerFeuilleMatch_disp.php">Préparer une nouvelle feuille</a>

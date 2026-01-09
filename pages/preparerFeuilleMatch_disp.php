@@ -14,7 +14,7 @@ include '../includes/_feuillematch.php';
 <div class="container">
     <h2>Préparer feuille de match</h2>
     <?php if (isset($_GET['error'])): ?>
-        <p style="color:red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+        <p class="error"><?php echo htmlspecialchars($_GET['error']); ?></p>
     <?php endif; ?>
     <form method="post" action="../core/ajoutfeuille.php">
         <label>Match:</label>

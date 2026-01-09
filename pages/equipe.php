@@ -46,10 +46,10 @@ $req->execute();
     </table>
 
     <div class="actions">
-        <form action="../pages/ajouterjoueur.php" method="get" style="display:inline;">
+        <form action="../pages/ajouterjoueur.php" method="get" class="inline">
             <button type="submit">Ajouter joueur</button>
         </form>
-        <form action="accueil.php" method="get" style="display:inline;">
+        <form action="accueil.php" method="get" class="inline">
             <button type="submit">Accueil</button>
         </form>
     </div>

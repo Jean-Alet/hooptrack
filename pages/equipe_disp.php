@@ -11,7 +11,7 @@
 <div class="container">
     <h2>Équipe</h2>
     <?php if (isset($_GET['error'])): ?>
-        <p style="color:red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+        <p class="error"><?php echo htmlspecialchars($_GET['error']); ?></p>
     <?php endif; ?>
     <table>
     <tr>
@@ -47,10 +47,10 @@
     </table>
 
     <div class="actions">
-        <form action="../pages/ajouterJoueur_disp.php" method="get" style="display:inline;">
+        <form action="../pages/ajouterJoueur_disp.php" method="get" class="inline">
             <button type="submit">Ajouter joueur</button>
         </form>
-        <form action="accueil_disp.php" method="get" style="display:inline;">
+        <form action="accueil_disp.php" method="get" class="inline">
             <button type="submit">Accueil</button>
         </form>
     </div>
