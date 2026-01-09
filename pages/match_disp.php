@@ -75,9 +75,6 @@ $matches = getMatch($linkpdo);
         <form action="../pages/ajouterMatch_disp.php" method="get" class="inline">
             <button type="submit">Ajouter match</button>
         </form>
-        <form action="accueil_disp.php" method="get" class="inline">
-            <button type="submit">Accueil</button>
-        </form>
     </div>
 </div>
 </body>
