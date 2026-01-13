@@ -21,7 +21,7 @@ if (!empty($_POST)) {
     $errors = [];
 
     // 4. Vérifier si une feuille existe déjà
-    if (FeuilleExiste($linkpdo, $id_match)) {
+    if (feuilleExiste($linkpdo, $id_match)) {
         $errors[] = "Une feuille de match existe déjà pour ce match.";
     }
 

@@ -84,7 +84,7 @@ function deleteJoueur($linkpdo, $num) {
 
 
 // Feuille match queries
-function FeuilleExiste($linkpdo, $id_match) {
+function feuilleExiste($linkpdo, $id_match) {
     $check = $linkpdo->prepare('SELECT COUNT(*) FROM feuille_match WHERE id_match = ?');
     $check->execute([$id_match]);
     return $check->fetchColumn() > 0;
@@ -143,7 +143,7 @@ function aDejaJoue($linkpdo, $num) {
 }
 
 // Auth queries
-function PasswordHash($linkpdo, $login) {
+function passwordHash($linkpdo, $login) {
     $requete = $linkpdo->prepare('SELECT mdp_hash FROM utilisateur WHERE login_utilisateur = ?');
     $requete->execute([$login]);
     return $requete->fetchColumn();
