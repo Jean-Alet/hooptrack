@@ -12,7 +12,7 @@
 <div class="container">
     <h2>Ajouter un joueur</h2>
 
-    <form method="post" action="../core/ajoutjoueur.php">
+    <form method="post" action="../core/ajoutJoueur.php">
 
         <label>Numéro licence :</label>
         <input type="text" name="num_licence" required>

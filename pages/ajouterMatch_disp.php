@@ -12,7 +12,7 @@
 <div class="container">
     <h2>Ajouter un match</h2>
 
-    <form method="post" action="../core/ajoutmatch.php">
+    <form method="post" action="../core/ajoutMatch.php">
 
         <label>Date et heure :</label>
         <input type="datetime-local" name="date_match" required>

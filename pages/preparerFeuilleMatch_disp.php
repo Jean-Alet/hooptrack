@@ -60,7 +60,7 @@ for ($i = 0; $i < 12; $i++) {
         </ul>
     </div>
 
-    <form method="post" action="../core/ajoutfeuille.php">
+    <form method="post" action="../core/ajoutFeuille.php">
         <label>Match:</label>
         <select name="id_match" required>
             <?php foreach ($matchs as $m): ?>

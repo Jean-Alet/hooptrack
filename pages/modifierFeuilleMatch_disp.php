@@ -71,7 +71,7 @@ if ($use_post_data) {
         </ul>
     </div>
     
-    <form method="post" action="../core/ajoutfeuille.php">
+    <form method="post" action="../core/ajoutFeuille.php">
         <input type="hidden" name="id_match" value="<?php echo $match['id_match']; ?>">
         
         <div class="selection-summary">
