@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 18 jan. 2026 à 15:20
+-- Généré le : dim. 18 jan. 2026 à 19:38
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -41,16 +41,26 @@ CREATE TABLE `feuille_match` (
 --
 
 INSERT INTO `feuille_match` (`id_match`, `num_licence`, `role`, `poste`, `note`, `commentaire`) VALUES
-(124, 'LIC00001', 'Titulaire', 'Ailier fort', NULL, ''),
-(124, 'LIC00004', 'Titulaire', 'Arrière', NULL, ''),
-(124, 'LIC00007', 'Titulaire', 'Ailier', NULL, ''),
-(124, 'LIC00008', 'Titulaire', 'Meneur', NULL, ''),
-(124, 'LIC00011', 'Titulaire', 'Pivot', 8, 'sympa'),
-(125, 'LIC00001', 'Titulaire', 'Arrière', NULL, ''),
-(125, 'LIC00004', 'Titulaire', 'Ailier fort', NULL, ''),
-(125, 'LIC00007', 'Titulaire', 'Ailier', NULL, ''),
-(125, 'LIC00008', 'Titulaire', 'Pivot', NULL, ''),
-(125, 'LIC00011', 'Titulaire', 'Meneur', NULL, '');
+(1,'LIC00001','Titulaire','Ailier',7,'Bon match'),
+(1,'LIC00002','Titulaire','Meneur',8,'Très bonne vision'),
+(1,'LIC00003','Titulaire','Pivot',9,'Dominant'),
+(1,'LIC00005','Titulaire','Ailier fort',7,'Solide'),
+(1,'LIC00007','Titulaire','Arrière',8,'Adresse correcte'),
+(1,'LIC00009','Remplaçant','Meneur',6,'Entrée correcte'),
+
+(2,'LIC00001','Titulaire','Ailier',6,'Irrégulier'),
+(2,'LIC00002','Titulaire','Meneur',7,'Bon rythme'),
+(2,'LIC00003','Titulaire','Pivot',8,'Présent au rebond'),
+(2,'LIC00005','Titulaire','Ailier fort',6,'Fatigue'),
+(2,'LIC00007','Titulaire','Arrière',5,'Manque de réussite'),
+(2,'LIC00010','Remplaçant','Ailier',7,'Bonne énergie'),
+
+(3,'LIC00001','Titulaire','Ailier',9,'Excellent'),
+(3,'LIC00002','Titulaire','Meneur',8,'Maîtrise'),
+(3,'LIC00003','Titulaire','Pivot',10,'MVP'),
+(3,'LIC00005','Titulaire','Ailier fort',8,'Très solide'),
+(3,'LIC00007','Titulaire','Arrière',7,'Bon apport'),
+(3,'LIC00009','Remplaçant','Meneur',7,'Impact positif');
 
 -- --------------------------------------------------------
 
@@ -75,12 +85,16 @@ CREATE TABLE `joueur` (
 --
 
 INSERT INTO `joueur` (`num_licence`, `nom`, `prenom`, `date_naissance`, `taille`, `poids`, `nationalite`, `statut`, `commentaires`) VALUES
-('LIC00001', 'Dupont', 'Jean', '1990-05-12', 185.0, 82.50, '', 'Actif', 'Ailier droit'),
-('LIC00004', 'Moreau', 'Alice', '2000-07-15', 168.0, 60.00, '', 'Actif', 'Jeune poussin'),
-('LIC00005', 'Leroy', 'Marc', '1985-09-30', 198.0, 102.30, '', 'Suspendu', 'Ancien pivot'),
-('LIC00007', 'Fabre', 'Nicolas', '1997-06-27', 190.0, 85.00, '', 'Actif', 'Remplaçant'),
-('LIC00008', 'Garcia', 'Ana', '2002-12-05', 165.0, 58.20, '', 'Actif', 'Jeune espoir'),
-('LIC00011', 'Declerck', 'Jack', '2000-06-08', 209.0, 105.00, 'France', 'Actif', 'MVP 2024, Superstar');
+('LIC00001','Dupont','Jean','1994-03-12',188.0,84.0,'France','Actif','Ailier titulaire'),
+('LIC00002','Martin','Lucas','1996-07-22',182.0,79.5,'France','Actif','Meneur rapide'),
+('LIC00003','Declercq','Jack','2000-06-08',209.0,105.0,'Australie','Actif','Pivot dominant'),
+('LIC00004','Silva','Pedro','1998-11-02',190.0,88.0,'Portugal','Blessé','Entorse cheville'),
+('LIC00005','Rossi','Marco','1993-01-18',195.0,92.0,'Italie','Actif','Ailier fort physique'),
+('LIC00006','Kovac','Ivan','1995-05-30',200.0,98.0,'Croatie','Suspendu','Faute technique'),
+('LIC00007','Smith','Daniel','1999-09-14',185.0,83.0,'États-Unis','Actif','Arrière shooteur'),
+('LIC00008','Nowak','Piotr','1997-12-01',202.0,100.0,'Pologne','Absent','Raison personnelle'),
+('LIC00009','Santos','Miguel','1992-04-25',178.0,76.0,'Brésil','Actif','Meneur remplaçant'),
+('LIC00010','Müller','Jonas','1996-08-09',198.0,95.0,'Allemagne','Actif','Ailier polyvalent');
 
 -- --------------------------------------------------------
 
@@ -104,13 +118,11 @@ CREATE TABLE `match` (
 --
 
 INSERT INTO `match` (`id_match`, `date_match`, `equipe_adverse`, `lieu`, `resultat`, `score_equipe`, `score_adverse`, `overtime`) VALUES
-(1, '2025-11-01 20:00:00', 'Tigers', 'Domicile', NULL, NULL, NULL, 0),
-(2, '2025-11-08 18:30:00', 'Eagles', 'Extérieur', NULL, NULL, NULL, 0),
-(3, '2025-11-15 19:00:00', 'Sharks', 'Domicile', 'Défaite', 90, 92, 0),
-(4, '2025-11-21 16:00:00', 'Gorillas', 'Extérieur', 'Victoire', 100, 90, 0),
-(5, '2025-11-25 10:30:00', 'Lions', 'Domicile', 'Victoire', 100, 90, 1),
-(124, '2026-01-13 13:30:00', 'Hawks', 'Domicile', 'Victoire', 2, 1, 0),
-(125, '2026-02-06 14:00:00', 'Jaguars', 'Domicile', NULL, NULL, NULL, 0);
+(1,'2025-12-01 20:00:00','Tigers','Domicile','Victoire',92,85,0),
+(2,'2025-12-08 18:30:00','Eagles','Extérieur','Défaite',88,94,0),
+(3,'2025-12-15 19:00:00','Sharks','Domicile','Victoire',101,97,1),
+(4,'2026-02-10 20:00:00','Lions','Extérieur',NULL,NULL,NULL,0),
+(5,'2026-02-17 16:00:00','Bulls','Domicile',NULL,NULL,NULL,0);
 
 -- --------------------------------------------------------
 
@@ -129,7 +141,8 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`login_utilisateur`, `mdp_hash`) VALUES
 ('jean', '$2y$10$gwF2JMLnl2.WOk5Qus/TwO00vhDQ3jHX72J8x4UlSFbPLbrOyALZy'),
-('ronan', '$2y$10$sJIt.dhAoAC7IZY1bV75XOyMnSQX9Kq.2YMIDmhdVd6SdSBY1c6Ka');
+('ronan', '$2y$10$sJIt.dhAoAC7IZY1bV75XOyMnSQX9Kq.2YMIDmhdVd6SdSBY1c6Ka'),
+('coach', '$2y$10$S4rkNmfKMPOscM.XOmzDyunAOwG6165M2ip1Haa77ebM4bTPXj5L6');
 
 --
 -- Index pour les tables déchargées
@@ -163,7 +176,7 @@ ALTER TABLE `match`
 -- AUTO_INCREMENT pour la table `match`
 --
 ALTER TABLE `match`
-  MODIFY `id_match` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id_match` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- Contraintes pour les tables déchargées
