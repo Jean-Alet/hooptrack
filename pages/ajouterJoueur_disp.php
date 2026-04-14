@@ -12,7 +12,7 @@
 <div class="container">
     <h2>Ajouter un joueur</h2>
 
-    <form method="post" action="../core/ajoutJoueur.php">
+    <form method="post" action="../core/ajoutjoueur.php">
 
         <label>Numéro licence :</label>
         <input type="text" name="num_licence" required>
@@ -38,8 +38,9 @@
         <label>Statut :</label>
         <select name="statut">
             <option>Actif</option>
-            <option>Inactif</option>
             <option>Blessé</option>
+            <option>Suspendu</option>
+            <option>Absent</option>
         </select>
 
         <label>Commentaires :</label>
